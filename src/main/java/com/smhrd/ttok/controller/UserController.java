@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.smhrd.ttok.DTO.request.user.UserLoginDTO;
 import com.smhrd.ttok.DTO.request.user.UserRegisterDTO;
 import com.smhrd.ttok.DTO.response.UserResponseDTO;
 import com.smhrd.ttok.service.UserService;
@@ -26,7 +27,15 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(successUser);
     }
 
-    // @PostMapping("/login")
-    // public ResponseEntity<User
+   @PostMapping("/login")
+   public ResponseEntity<String> login(@RequestBody UserLoginDTO loginDTO) {
+    // 사용자 인증을 수행합니다.
+    if (userService.authenticate(loginDTO)) {
+        return ResponseEntity.ok("Login successful!"); // 로그인 성공
+    } else {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials"); // 인증 실패
+    }
+}
+
     
 }
