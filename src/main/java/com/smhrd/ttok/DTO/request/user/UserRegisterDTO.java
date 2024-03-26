@@ -16,17 +16,17 @@ public class UserRegisterDTO {
     private String password;
     private String name;
     private String nation;
-    private String birth;
+    private String age;
     private String gender;
     private boolean start;
 
     @Builder
-    public UserRegisterDTO(String phone, String password, String name, String nation, String birth, String gender,boolean start) {
+    public UserRegisterDTO(String phone, String password, String name, String nation, String age, String gender,boolean start) {
         this.phone = phone;
         this.password = password;
         this.name = name;
         this.nation = nation;
-        this.birth = birth;
+        this.age = age;
         this.gender = gender;
         this.start = start;
   
@@ -39,7 +39,7 @@ public class UserRegisterDTO {
                .password(dto.getPassword())
                .name(dto.getName())
                .nation(dto.getNation())
-               .birth(dto.getBirth())
+               .age(dto.getAge())
                .gender(dto.getGender())
                .start(dto.isStart())
                .build();    

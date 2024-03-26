@@ -13,7 +13,7 @@ import lombok.ToString;
 
 // 손승아, tb_user 만드는 엔티티 생성, 20240316
 @Entity
-@Table(name="tb_user")
+@Table(name="USER")
 @Getter
 @ToString
 @Builder
@@ -22,32 +22,32 @@ import lombok.ToString;
 public class User {
 
     @Id
-    @Column(name = "user_idx")
+    @Column(name = "USER_IDX")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, name = "user_phone",nullable = false)
+    @Column(unique = true, name = "USER_PHONE",nullable = false)
     private String phone;
 
-    @Column(name = "user_pw",nullable = false)
+    @Column(name = "USER_PW",nullable = false)
     private String password;
 
-    @Column(name = "user_nick",nullable = false)
+    @Column(name = "USER_NICK",nullable = false)
     private String name;
 
-    @Column(name = "user_nation",nullable = false)
+    @Column(name = "USER_NATION",nullable = false)
     private String nation;
 
-    @Column(name = "user_birth",nullable = false)
-    private String birth;
+    @Column(name = "USER_AGE",nullable = false)
+    private String age;
 
-    @Column(name = "user_gender",nullable = false)
+    @Column(name = "USER_GENDER",nullable = false)
     private String gender;
 
-    @Column(name = "user_start",nullable = false)
+    @Column(name = "USER_START",nullable = false)
     private boolean start;
 
-    @Column(name = "join_dt",nullable = false)
+    @Column(name = "JOIN_DT",nullable = false)
     @CreationTimestamp
     private LocalDate join_dt = LocalDate.now();
     
