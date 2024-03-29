@@ -2,7 +2,8 @@ package com.smhrd.ttok.DTO.request.user;
 
 import com.smhrd.ttok.domain.User;
 
-import lombok.Builder;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserRegisterDTO {
 
     private String phone;
@@ -20,17 +22,17 @@ public class UserRegisterDTO {
     private String gender;
     private boolean start;
 
-    @Builder
-    public UserRegisterDTO(String phone, String password, String name, String nation, String age, String gender,boolean start) {
-        this.phone = phone;
-        this.password = password;
-        this.name = name;
-        this.nation = nation;
-        this.age = age;
-        this.gender = gender;
-        this.start = start;
+    // @Builder
+    // public UserRegisterDTO(String phone, String password, String name, String nation, String age, String gender,boolean start) {
+    //     this.phone = phone;
+    //     this.password = password;
+    //     this.name = name;
+    //     this.nation = nation;
+    //     this.age = age;
+    //     this.gender = gender;
+    //     this.start = start;
   
-    }
+    // }
 
     // DTO -> Entity
     public static User ofEntity(UserRegisterDTO dto) {
