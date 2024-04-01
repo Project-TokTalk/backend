@@ -1,6 +1,9 @@
 package com.smhrd.ttok.service;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -8,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.smhrd.ttok.DTO.request.user.UserLoginDTO;
+import com.smhrd.ttok.DTO.request.user.UserNationDTO;
 import com.smhrd.ttok.DTO.request.user.UserRegisterDTO;
 import com.smhrd.ttok.DTO.response.UserResponseDTO;
 import com.smhrd.ttok.common.exception.UserException;
@@ -66,5 +70,26 @@ public class UserService {
             throw new UserException("이미 존재하는 휴대폰 번호입니다.", HttpStatus.BAD_REQUEST);
         }
     }
-    
+    // 손승아, 국가 정보 가져와서 DTO 매핑 후 컨트롤러에 전달, 20240401
+    public List<UserNationDTO> getCountryGraphData(){
+        List<User> users = userRepository.findAll();
+
+        // 국가별 사용자 수를 계산하기 위해 스트림과 그루핑을 사용하여 맵으로 변환합니다.
+        Map<String, Long> countryCounts = users.stream()
+                .collect(Collectors.groupingBy(User::getNation, Collectors.counting()));
+
+        // 총 사용자 수 계산
+        long totalUsers = users.size();
+
+        // UserNationDTO 리스트로 변환합니다.
+        List<UserNationDTO> countryDataList = countryCounts.entrySet().stream()
+                .map(entry -> {
+                    double percentage = (double) entry.getValue() / totalUsers * 100;
+                    log.info("country: " + entry.getKey() + ", count: " + entry.getValue());
+                    return new UserNationDTO(entry.getKey(), entry.getValue(), percentage);
+                })
+                .collect(Collectors.toList());
+
+        return countryDataList;
+    }
 }
