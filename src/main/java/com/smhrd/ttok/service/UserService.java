@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.smhrd.ttok.DTO.request.user.UserGenderDTO;
 import com.smhrd.ttok.DTO.request.user.UserLoginDTO;
 import com.smhrd.ttok.DTO.request.user.UserNationDTO;
 import com.smhrd.ttok.DTO.request.user.UserRegisterDTO;
@@ -91,5 +92,24 @@ public class UserService {
                 .collect(Collectors.toList());
 
         return countryDataList;
+    }
+
+    //손승아, 유저 정보 가져와서 DTO 매핑 후 컨트롤러에 전달, 20240403
+    public List<UserGenderDTO> getGenderGraphData(){
+        List<User> users = userRepository.findAll();
+
+        Map<String,Long> genderCounts = users.stream()
+                        .collect(Collectors.groupingBy(User::getGender, Collectors.counting()));
+
+        long totalUsers = users.size();
+
+        List<UserGenderDTO> genderDataList = genderCounts.entrySet().stream()
+                        .map(entry -> {
+                            double percentage = (double) entry.getValue() / totalUsers * 100;
+                            return new UserGenderDTO(entry.getKey(), entry.getValue(), percentage);
+                        })
+                        .collect(Collectors.toList());
+
+            return genderDataList;
     }
 }
