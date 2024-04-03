@@ -106,6 +106,7 @@ public class UserService {
         List<UserGenderDTO> genderDataList = genderCounts.entrySet().stream()
                         .map(entry -> {
                             double percentage = (double) entry.getValue() / totalUsers * 100;
+                            log.info("gender: " + entry.getKey() + ", count: " + entry.getValue());
                             return new UserGenderDTO(entry.getKey(), entry.getValue(), percentage);
                         })
                         .collect(Collectors.toList());
