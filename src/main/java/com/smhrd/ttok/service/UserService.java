@@ -1,5 +1,6 @@
 package com.smhrd.ttok.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -112,5 +113,34 @@ public class UserService {
                         .collect(Collectors.toList());
 
             return genderDataList;
+    }
+    
+    // 손승아, 연령대 별 정보 가져와서 DTO 매핑 후 컨트롤러 전달, 20240404
+    public Map<String, Map<String, Long>> getStartAndAgeCount() {
+        List<Object[]> startTrueResults = userRepository.countStartTrueByAgeGroup();
+        List<Object[]> totalResults = userRepository.countByAgeGroup();
+        
+        Map<String, Map<String, Long>> startAndAgeCount = new HashMap<>();
+        for (Object[] result : totalResults) {
+            String ageGroup = (String) result[0];
+            if (!"ADMIN".equals(ageGroup)) {
+                Long totalCount = (Long) result[1];
+                startAndAgeCount.put(ageGroup, new HashMap<>());
+                startAndAgeCount.get(ageGroup).put("totalCount", totalCount);
+            }
+        }
+        
+        for (Object[] result : startTrueResults) {
+            String ageGroup = (String) result[0];
+            if (!"ADMIN".equals(ageGroup)) {
+                Long startTrueCount = (Long) result[1];
+                if (!startAndAgeCount.containsKey(ageGroup)) {
+                    startAndAgeCount.put(ageGroup, new HashMap<>());
+                }
+                startAndAgeCount.get(ageGroup).put("startTrueCount", startTrueCount);
+            }
+        }
+        
+        return startAndAgeCount;
     }
 }
