@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.smhrd.ttok.DTO.request.user.UserGenderDTO;
 import com.smhrd.ttok.DTO.request.user.UserLoginDTO;
+import com.smhrd.ttok.DTO.request.user.UserMemberDTO;
 import com.smhrd.ttok.DTO.request.user.UserNationDTO;
 import com.smhrd.ttok.DTO.request.user.UserRegisterDTO;
 import com.smhrd.ttok.DTO.response.UserResponseDTO;
@@ -143,4 +144,27 @@ public class UserService {
         
         return startAndAgeCount;
     }
+    // 이주명(0405) 위에 참고해서 함 해보기.
+    public List<UserMemberDTO> getMemberList() {
+        // UserRepository에서 User 리스트를 가져옴
+        List<User> users = userRepository.findAll();
+
+        // User를 UserMemberDTO로 매핑하여 반환
+        List<UserMemberDTO> memberList = users.stream()
+                .filter(user -> !"ADMIN".equals(user.getPhone()))
+                .map(user -> new UserMemberDTO(
+                        user.getPhone(),
+                        user.getName(),
+                        user.getNation(),
+                        user.getAge(),
+                        user.getGender(),
+                        user.isStart(),
+                        user.getJoin_dt()
+                ))
+                .collect(Collectors.toList());
+                log.info(memberList);
+
+            return memberList;
+    }
+    // 이주명(0405) 여기까지
 }
