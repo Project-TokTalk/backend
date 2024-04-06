@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.smhrd.ttok.DTO.request.user.UserDateDTO;
 import com.smhrd.ttok.DTO.request.user.UserGenderDTO;
 import com.smhrd.ttok.DTO.request.user.UserLoginDTO;
 import com.smhrd.ttok.DTO.request.user.UserMemberDTO;
@@ -167,4 +168,21 @@ public class UserService {
             return memberList;
     }
     // 이주명(0405) 여기까지
+
+    // 임해솔, 가입날짜별 정보 가져와서 DTO 매핑 후 컨트롤러 전달, 20240406
+    public List<UserDateDTO> getDateGraphData(){
+        List<User> users = userRepository.findAll();
+
+        Map<String, Long> dateCounts = users.stream()
+        .collect(Collectors.groupingBy(user -> user.getJoin_dt().getYear() + "-" + user.getJoin_dt().getMonthValue(), Collectors.counting()));
+
+        List<UserDateDTO> dateDataList = dateCounts.entrySet().stream()
+                        .map(entry -> {
+                            log.info("date: " + entry.getKey() + ", count: " + entry.getValue());
+                            return new UserDateDTO(entry.getKey(), entry.getValue());
+                        })
+                        .collect(Collectors.toList());
+
+            return dateDataList;
+    }
 }

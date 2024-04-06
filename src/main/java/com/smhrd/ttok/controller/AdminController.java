@@ -39,6 +39,8 @@ public class AdminController {
             case "member":
                 return userService.getMemberList();
             // 이주명(0405) 요까지
+            case "date":
+                return userService.getDateGraphData();
             default:
                 // 지원하지 않는 요청 유형에 대한 처리
                 return "Invalid request type";
