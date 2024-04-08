@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.smhrd.ttok.service.ChattingService;
 import com.smhrd.ttok.service.UserService;
 
 // 손승아, 대시보드 엔드포인트 따로 관리 위해 Controller 생성, 20240401
@@ -15,6 +16,8 @@ public class AdminController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private ChattingService chattingService;
 
     // @GetMapping("/country")
     // public List<UserNationDTO> getCountryGraphData(){
