@@ -12,8 +12,8 @@ import com.smhrd.ttok.service.UserService;
 import lombok.extern.log4j.Log4j2;
 
 // 손승아, 대시보드 엔드포인트 따로 관리 위해 Controller 생성, 20240401
-@RestController          
-@Log4j2 
+@RestController
+@Log4j2
 @RequestMapping("/admin")
 public class AdminController {
 
@@ -41,10 +41,8 @@ public class AdminController {
                 return userService.getGenderGraphData();
             case "age":
                 return userService.getStartAndAgeCount();
-            // 이주명(0405) 여기도 추가해봄.. 아닌거같은디??
             case "member":
                 return userService.getMemberList();
-            // 이주명(0405) 요까지
             case "date":
                 return userService.getDateGraphData();
             case "kochat":

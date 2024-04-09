@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-// 이주명 0405 회원정보 관리용 DTO 생성
+// 이주명, 회원정보 관리용 DTO 생성, 20240405
 @Getter
 @Setter
 @AllArgsConstructor

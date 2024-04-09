@@ -145,14 +145,14 @@ public class UserService {
         
         return startAndAgeCount;
     }
-    // 이주명(0405) 위에 참고해서 함 해보기.
+    // 이주명, 유저 정보 가져와서 DTO 매핑 후 컨트롤러 전달, 20240405
     public List<UserMemberDTO> getMemberList() {
         // UserRepository에서 User 리스트를 가져옴
         List<User> users = userRepository.findAll();
 
         // User를 UserMemberDTO로 매핑하여 반환
         List<UserMemberDTO> memberList = users.stream()
-                .filter(user -> !"ADMIN".equals(user.getPhone()))
+                .filter(user -> !"ADMIN".equals(user.getName()))
                 .map(user -> new UserMemberDTO(
                         user.getPhone(),
                         user.getName(),
@@ -167,7 +167,6 @@ public class UserService {
 
             return memberList;
     }
-    // 이주명(0405) 여기까지
 
     // 임해솔, 가입날짜별 정보 가져와서 DTO 매핑 후 컨트롤러 전달, 20240406
     public List<UserDateDTO> getDateGraphData(){
