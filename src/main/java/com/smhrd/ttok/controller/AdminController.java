@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.smhrd.ttok.service.ChattingService;
 import com.smhrd.ttok.service.UserService;
 
+import lombok.extern.log4j.Log4j2;
+
 // 손승아, 대시보드 엔드포인트 따로 관리 위해 Controller 생성, 20240401
-@RestController           
+@RestController          
+@Log4j2 
 @RequestMapping("/admin")
 public class AdminController {
 
@@ -44,6 +47,10 @@ public class AdminController {
             // 이주명(0405) 요까지
             case "date":
                 return userService.getDateGraphData();
+            case "kochat":
+                return chattingService.chatTolistK();
+            case "enchat":
+                return chattingService.chatTolistE();
             default:
                 // 지원하지 않는 요청 유형에 대한 처리
                 return "Invalid request type";
