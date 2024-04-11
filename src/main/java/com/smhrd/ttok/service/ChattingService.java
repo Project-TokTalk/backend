@@ -35,6 +35,7 @@ public class ChattingService {
             .question(ko.getQuestion())
             .answer(ko.getAnswer().getAnswer())
             .user(ko.getUser().getId())
+            .phone(ko.getUser().getPhone())
             .time(ko.getTime())
             .build();
 
@@ -65,6 +66,7 @@ public class ChattingService {
             .question(en.getQuestion())
             .answer(en.getAnswer().getAnswer())
             .user(en.getUser().getId())
+            .phone(en.getUser().getPhone())
             .time(en.getTime())
             .build();
 
@@ -79,6 +81,68 @@ public class ChattingService {
             }else{
                 EnChatList.putIfAbsent(UserIdx, new ArrayList<>());
                 EnChatList.get(UserIdx).add(dto); 
+            }
+        }
+        return EnChatList;
+    }
+
+    public Map<String, List<ChatKoRequestDTO>> chatLogKo(){
+        List<Chatting_Ko> koList = chattingKoRepository.findAll();
+        List<ChatKoRequestDTO> chatList = new ArrayList<>();
+
+        Map<String, List<ChatKoRequestDTO>> KoChatList = new HashMap<String, List<ChatKoRequestDTO>>();
+        for(Chatting_Ko ko : koList){
+            ChatKoRequestDTO addChatKoRequestDTO = ChatKoRequestDTO.builder()
+            .id(ko.getId())
+            .question(ko.getQuestion())
+            .answer(ko.getAnswer().getAnswer())
+            .user(ko.getUser().getId())
+            .phone(ko.getUser().getPhone())
+            .time(ko.getTime())
+            .build();
+
+            chatList.add(addChatKoRequestDTO);
+        }
+
+        for(ChatKoRequestDTO dto : chatList){
+            String UserPhone = dto.getPhone();
+
+            if(KoChatList.containsKey(UserPhone)){
+                KoChatList.get(UserPhone).add(dto);
+            }else{
+                KoChatList.putIfAbsent(UserPhone, new ArrayList<>());
+                KoChatList.get(UserPhone).add(dto); 
+            }
+        }
+        return KoChatList;
+    }
+
+    public Map<String, List<ChatEnRequestDTO>> chatLogEn(){
+        List<Chatting_En> enList = chattingEnRepository.findAll();
+        List<ChatEnRequestDTO> chatList = new ArrayList<>();
+
+        Map<String, List<ChatEnRequestDTO>> EnChatList = new HashMap<String, List<ChatEnRequestDTO>>();
+        for(Chatting_En en : enList){
+            ChatEnRequestDTO addChatEnRequestDTO = ChatEnRequestDTO.builder()
+            .id(en.getId())
+            .question(en.getQuestion())
+            .answer(en.getAnswer().getAnswer())
+            .user(en.getUser().getId())
+            .phone(en.getUser().getPhone())
+            .time(en.getTime())
+            .build();
+
+            chatList.add(addChatEnRequestDTO);
+        }
+
+        for(ChatEnRequestDTO dto : chatList){
+            String UserPhone = dto.getPhone();
+
+            if(EnChatList.containsKey(UserPhone)){
+                EnChatList.get(UserPhone).add(dto);
+            }else{
+                EnChatList.putIfAbsent(UserPhone, new ArrayList<>());
+                EnChatList.get(UserPhone).add(dto); 
             }
         }
         return EnChatList;

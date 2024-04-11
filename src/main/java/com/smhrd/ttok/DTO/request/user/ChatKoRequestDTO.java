@@ -17,14 +17,16 @@ public class ChatKoRequestDTO {
     private String question;
     private String answer;
     private long user;
+    private String phone;
     private LocalDate time;
 
     @Builder
-    public ChatKoRequestDTO(int id, String question, String answer, long user, LocalDate time){
+    public ChatKoRequestDTO(int id, String question, String answer, long user, String phone, LocalDate time){
         this.id = id;
         this.question = question;
         this.answer = answer;
         this.user = user;
+        this.phone = phone;
         this.time = time;
     }
 
@@ -35,6 +37,7 @@ public class ChatKoRequestDTO {
         .question(chatting_Ko.getQuestion())
         .answer(chatting_Ko.getAnswer().getAnswer())
         .user(chatting_Ko.getUser().getId())
+        .phone(chatting_Ko.getUser().getPhone())
         .time(chatting_Ko.getTime())
         .build();
     }

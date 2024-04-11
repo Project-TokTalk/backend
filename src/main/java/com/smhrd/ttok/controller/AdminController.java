@@ -49,6 +49,10 @@ public class AdminController {
                 return chattingService.chatTolistK();
             case "enchat":
                 return chattingService.chatTolistE();
+            case "kolog":
+                return chattingService.chatLogKo();
+            case "enlog":
+                return chattingService.chatLogEn();
             default:
                 // 지원하지 않는 요청 유형에 대한 처리
                 return "Invalid request type";
