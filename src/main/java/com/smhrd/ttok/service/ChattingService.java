@@ -147,4 +147,40 @@ public class ChattingService {
         }
         return EnChatList;
     }
+
+    //미해결 질문 처리를 위해 채팅로그에서 답변되지 않은 로그를 확인 후 리스팅. 2024.04.11 엄다은
+    public Map<String, List<?>> Unsolving(){
+        List<Chatting_Ko> koList = chattingKoRepository.findAll();
+        List<ChatKoRequestDTO> chatListK = new ArrayList<>();
+
+        String WrongAnswerK = "죄송합니다. 이해하지 못했습니다. 키워드로 질문하거나 좀 더 정확하게 말씀해주세요. 예 : 제품 등록";
+        String WrongAnswerE = "I'm sorry. I didn't understand. Please ask me a keyword or tell me more accurately. Example : Product Registration";
+
+        for (Chatting_Ko ko : koList) {
+            if (ko.getAnswer().getAnswer().equals(WrongAnswerK)) {
+                ChatKoRequestDTO dto = ChatKoRequestDTO.builder()
+                        .id(ko.getId())
+                        .question(ko.getQuestion())
+                        .build();
+                    chatListK.add(dto);
+            }
+        }
+
+        List<Chatting_En> enList = chattingEnRepository.findAll();
+        List<ChatEnRequestDTO> chatListE = new ArrayList<>();
+
+        for (Chatting_En en : enList) {
+            if (en.getAnswer().getAnswer().equals(WrongAnswerE)) {
+                ChatEnRequestDTO dto = ChatEnRequestDTO.builder()
+                        .id(en.getId())
+                        .question(en.getQuestion())
+                        .build();
+                chatListE.add(dto);
+            }
+        }
+        Map<String, List<?>> result = new HashMap<>();
+        result.put("chatListK", chatListK);
+        result.put("chatListE", chatListE);
+        return result;
+    }
 }
