@@ -25,7 +25,7 @@ Spring Boot(gradle)를 활용하여 외국어 챗봇 서비스의 대시보드�
 ---
 손승아 : <https://github.com/sonseungah>
 
-이주명 :
+이주명 : <https://github.com/audwndl/portfolio>
 
 방찬혁 : <https://github.com/hyuk3001/portfolio>
 
