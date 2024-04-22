@@ -64,3 +64,5 @@ Spring Boot(gradle)를 활용하여 외국어 챗봇 서비스의 대시보드�
 
  ## ⚙ API
  - API 명세서 : [https://www.notion.so/API-88c11926138346b181864fcf70d73ce1?pvs=4](https://adorable-society-1a9.notion.site/API-88c11926138346b181864fcf70d73ce1?pvs=4)
+
+ - 프론트 git 주소 : https://github.com/Project-TokTalk/React.git
