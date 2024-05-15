@@ -16,7 +16,7 @@ Spring Boot(gradle)를 활용하여 외국어 챗봇 서비스의 대시보드�
 - 최종 발표
 
 ## 👯‍♀️ 개발자 소개
-- 손승아 : 팀장, Server 개발자
+- 손승아 : 팀장, Server 개발자, AWS 배포
 - 이주명 : 데이터 분석, Backend
 - 방찬혁 : Frontend, UI/UX Designer
 - 엄다은 : Backend
@@ -63,6 +63,11 @@ Spring Boot(gradle)를 활용하여 외국어 챗봇 서비스의 대시보드�
   - 챗봇이 응답 불가능한 질문들을 모아 확인 가능하고 그에 맞는 답변을 관리자가 작성해 추가할 수 있다.
   - 회원정보 관리가 가능하다.
   - 시나리오 관리가 가능하다.
+ 
+  - 
+ 
+  ## ⚠ 트러블 슈팅
+  - 
 
  ## ⚙ API
  - API 명세서 : [https://www.notion.so/API-88c11926138346b181864fcf70d73ce1?pvs=4](https://adorable-society-1a9.notion.site/API-88c11926138346b181864fcf70d73ce1?pvs=4)
