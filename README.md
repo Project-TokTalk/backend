@@ -46,9 +46,15 @@ Spring Boot(gradle)를 활용하여 외국어 챗봇 서비스의 대시보드�
 - 아이디어 회의 : Notion
 
 ## 📜 프로젝트 아키텍쳐
-![시스템 아키텍쳐](https://github.com/Project-TokTalk/backend/blob/main/KakaoTalk_20240413_105255582.png)
 
+### 시스템 아키텍처
+![시스템 아키텍처](https://github.com/Project-TokTalk/backend/blob/main/KakaoTalk_20240413_105255582.png)
+
+### AWS 설계
 ![AWS 아키텍쳐](https://github.com/Project-TokTalk/backend/blob/main/AWS.png)
+
+### 챗봇 설계
+![챗봇 설계](https://github.com/Project-TokTalk/backend/blob/main/%EC%B1%97%EB%B4%87%20%EC%84%A4%EA%B3%84.png)
 
 ## 📌 주요 기능
 - 외국어 챗봇
@@ -63,11 +69,24 @@ Spring Boot(gradle)를 활용하여 외국어 챗봇 서비스의 대시보드�
   - 챗봇이 응답 불가능한 질문들을 모아 확인 가능하고 그에 맞는 답변을 관리자가 작성해 추가할 수 있다.
   - 회원정보 관리가 가능하다.
   - 시나리오 관리가 가능하다.
+
+ ![로그인화면](https://github.com/Project-TokTalk/backend/blob/main/%EB%A1%9C%EA%B7%B8%EC%9D%B8%ED%99%94%EB%A9%B4.jpg)
+ ![챗봇 화면](https://github.com/Project-TokTalk/backend/blob/main/%EC%B1%97%EB%B4%87%ED%99%94%EB%A9%B4.jpg)
+ ![대시보드 화면](https://github.com/Project-TokTalk/backend/blob/main/%EB%8C%80%EC%8B%9C%EB%B3%B4%EB%93%9C1.png)
  
-  - 
- 
-  ## ⚠ 트러블 슈팅
-  - 
+## ⚠ 트러블 슈팅
+- NoneType 에러
+  - SpringBoot의 Entity 생성 후 챗봇에서 에러 확인
+    ![에러 사진](https://github.com/Project-TokTalk/backend/blob/main/nonetype%20%ED%8A%B8%EB%9F%AC%EB%B8%94%EC%8A%88%ED%8C%85.png)
+  - Entity 생성하는 과정에서 쿼리문의 auto_increment를 삭제하는 것을 확인
+  - 파이썬에서 오늘 날짜 받아서 sql문 안에 변수로 넣고 execute 하는 것으로 해결함
+
+- CORS 에러
+  - AWS 배포 이후 CORS에러가 뜨는 것을 확인
+    
+    ![CORS 에러](https://github.com/Project-TokTalk/backend/blob/main/CORS%EC%97%90%EB%9F%AC.png)
+  - 서버에 빌드하는 과정에서 주소가 localhost -> AWS로 설정한 탄력적ip를 가져오는 것을 확인
+  - React Proxy에 주소값 변경으로 해결
 
  ## ⚙ API
  - API 명세서 : [https://www.notion.so/API-88c11926138346b181864fcf70d73ce1?pvs=4](https://adorable-society-1a9.notion.site/API-88c11926138346b181864fcf70d73ce1?pvs=4)
