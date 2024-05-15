@@ -48,6 +48,8 @@ Spring Boot(gradle)를 활용하여 외국어 챗봇 서비스의 대시보드�
 ## 📜 프로젝트 아키텍쳐
 ![시스템 아키텍쳐](https://github.com/Project-TokTalk/backend/blob/main/KakaoTalk_20240413_105255582.png)
 
+![AWS 아키텍쳐](https://github.com/Project-TokTalk/backend/blob/main/AWS.png)
+
 ## 📌 주요 기능
 - 외국어 챗봇
   - 휴대폰 화면 기준으로 제작하였다.
